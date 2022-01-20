@@ -43,6 +43,7 @@ switch(chanceNum)
 			{
 				System.out.println("Advance to Boardwalk!");
 				Monopoly.player1.setLocation(39);
+				Monopoly.checkLocation();
 				break;
 			}
 	

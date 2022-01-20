@@ -156,7 +156,22 @@ public class Monopoly
 							System.out.println("You have landed at the " + Spaces.board.get(5).getName() + "!");
 							if(Spaces.board.get(5).isOwned()==false)
 								{
-									Spaces.board.get(player1.getLocation()).buyBoardSpace();
+									System.out.println("This Railroad is unowned. Do you want to buy it?");
+									System.out.println("1 - Yes");
+									System.out.println("2 - No");
+									int playerChoice = stringGetter.nextInt();
+									
+									if(playerChoice == 1)
+										{
+											System.out.println("This Property's Cost Is: " + ((Railroad)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice());
+											int price = ((Railroad)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice();
+											System.out.println("This Cost will now be subtracted from your balance");
+											Monopoly.player1.subtractFromBalance(price);
+											System.out.println("Your balance is now: " + Monopoly.player1.getBalance());
+											
+											Monopoly.player1.ownedProperties.add(Monopoly.player1.getLocation());
+											
+										}
 								}
 								
 							else
@@ -238,7 +253,22 @@ public class Monopoly
 							System.out.println("You have landed at the " + Spaces.board.get(12).getName() + "!");
 							if(Spaces.board.get(12).isOwned()==false)
 								{
-									Spaces.board.get(player1.getLocation()).buyBoardSpace();
+									System.out.println("This Utility is unowned. Do you want to buy it?");
+									System.out.println("1 - Yes");
+									System.out.println("2 - No");
+									int playerChoice = stringGetter.nextInt();
+									
+									if(playerChoice == 1)
+										{
+											System.out.println("This Property's Cost Is: " + ((Utility)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice());
+											int price = ((Utility)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice();
+											System.out.println("This Cost will now be subtracted from your balance");
+											Monopoly.player1.subtractFromBalance(price);
+											System.out.println("Your balance is now: " + Monopoly.player1.getBalance());
+											
+											Monopoly.player1.ownedProperties.add(Monopoly.player1.getLocation());
+											
+										}
 								}
 								
 							else
@@ -280,7 +310,22 @@ public class Monopoly
 							System.out.println("You have landed at the " + Spaces.board.get(15).getName() + "!");
 							if(Spaces.board.get(15).isOwned()==false)
 								{
-									Spaces.board.get(player1.getLocation()).buyBoardSpace();
+									System.out.println("This Railroad is unowned. Do you want to buy it?");
+									System.out.println("1 - Yes");
+									System.out.println("2 - No");
+									int playerChoice = stringGetter.nextInt();
+									
+									if(playerChoice == 1)
+										{
+											System.out.println("This Property's Cost Is: " + ((Railroad)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice());
+											int price = ((Railroad)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice();
+											System.out.println("This Cost will now be subtracted from your balance");
+											Monopoly.player1.subtractFromBalance(price);
+											System.out.println("Your balance is now: " + Monopoly.player1.getBalance());
+											
+											Monopoly.player1.ownedProperties.add(Monopoly.player1.getLocation());
+											
+										}
 								}
 								
 							else
@@ -399,7 +444,22 @@ public class Monopoly
 							System.out.println("You have landed at the " + Spaces.board.get(25).getName() + "!");
 							if(Spaces.board.get(25).isOwned()==false)
 								{
-									Spaces.board.get(player1.getLocation()).buyBoardSpace();
+									System.out.println("This Railroad is unowned. Do you want to buy it?");
+									System.out.println("1 - Yes");
+									System.out.println("2 - No");
+									int playerChoice = stringGetter.nextInt();
+									
+									if(playerChoice == 1)
+										{
+											System.out.println("This Property's Cost Is: " + ((Railroad)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice());
+											int price = ((Railroad)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice();
+											System.out.println("This Cost will now be subtracted from your balance");
+											Monopoly.player1.subtractFromBalance(price);
+											System.out.println("Your balance is now: " + Monopoly.player1.getBalance());
+											
+											Monopoly.player1.ownedProperties.add(Monopoly.player1.getLocation());
+											
+										}
 								}
 								
 							else
@@ -441,7 +501,22 @@ public class Monopoly
 							System.out.println("You have landed at the " + Spaces.board.get(28).getName() + "!");
 							if(Spaces.board.get(28).isOwned()==false)
 								{
-									Spaces.board.get(player1.getLocation()).buyBoardSpace();
+									System.out.println("This Utility is unowned. Do you want to buy it?");
+									System.out.println("1 - Yes");
+									System.out.println("2 - No");
+									int playerChoice = stringGetter.nextInt();
+									
+									if(playerChoice == 1)
+										{
+											System.out.println("This Property's Cost Is: " + ((Utility)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice());
+											int price = ((Utility)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice();
+											System.out.println("This Cost will now be subtracted from your balance");
+											Monopoly.player1.subtractFromBalance(price);
+											System.out.println("Your balance is now: " + Monopoly.player1.getBalance());
+											
+											Monopoly.player1.ownedProperties.add(Monopoly.player1.getLocation());
+											
+										}
 								}
 								
 							else
@@ -523,7 +598,22 @@ public class Monopoly
 							System.out.println("You have landed at the " + Spaces.board.get(35).getName() + "!");
 							if(Spaces.board.get(35).isOwned()==false)
 								{
-									Spaces.board.get(player1.getLocation()).buyBoardSpace();
+									System.out.println("This Railroad is unowned. Do you want to buy it?");
+									System.out.println("1 - Yes");
+									System.out.println("2 - No");
+									int playerChoice = stringGetter.nextInt();
+									
+									if(playerChoice == 1)
+										{
+											System.out.println("This Property's Cost Is: " + ((Railroad)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice());
+											int price = ((Railroad)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice();
+											System.out.println("This Cost will now be subtracted from your balance");
+											Monopoly.player1.subtractFromBalance(price);
+											System.out.println("Your balance is now: " + Monopoly.player1.getBalance());
+											
+											Monopoly.player1.ownedProperties.add(Monopoly.player1.getLocation());
+											
+										}
 								}
 								
 							else

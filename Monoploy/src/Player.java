@@ -7,7 +7,7 @@ public class Player
 		private int location = 1;
 		private boolean isInJail;
 		private String name;
-		ArrayList<Integer> ownedProperties = new ArrayList<Integer>();
+		 ArrayList<Integer> ownedProperties = new ArrayList<Integer>();
 		private boolean jailStatus;
 		public Player()
 			{
@@ -79,6 +79,13 @@ public class Player
 				location-=40;
 			}
 		}
+		public void reverseIncrementLocation(int il)
+		{
+			location -= il;
+			if(location<0) {
+				location+=40;
+			}
+		}
 
 		public boolean isJailStatus()
 			{
@@ -99,15 +106,6 @@ public class Player
 			{
 				this.name = name;
 			}
-
-		public void printStats() {
-			System.out.println("Your name is "+name);
-			System.out.println("Your balance is $"+balance);
-			if (ownedProperties.isEmpty()) {
-				System.out.println("You don't own any properties");
-			}else if (ownedProperties.size()>1){
-				Collections.sort(ownedProperties);
-				System.out.println("You own "+ownedProperties.size()+" properties");
-			}
-		}
+		
+		
 	}

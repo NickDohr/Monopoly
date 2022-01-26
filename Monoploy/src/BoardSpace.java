@@ -3,7 +3,7 @@ public class BoardSpace
 	{
 		private String name;
 		private int location;
-		protected boolean owned;
+		protected static boolean owned;
 		public BoardSpace(String n,int l)
 		{
 			name = n;
@@ -52,7 +52,7 @@ public class BoardSpace
 				return 1;
 			}
 		
-		public static void buyBoardSpace()
+		public static void buyBoardSpace(Player p)
 		{
 			 Scanner userIntInput = new Scanner(System.in);
 			
@@ -65,19 +65,27 @@ public class BoardSpace
 					
 					if(playerChoice == 1)
 						{
-							System.out.println("This Property's Cost Is: " + ((Property)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice());
-							int price = ((Property)Spaces.board.get(Monopoly.player1.getLocation()-1)).getPrice();
+							System.out.println("This Property's Cost Is: " + ((Property)Spaces.board.get(p.getLocation())).getPrice());
+							int price = ((Property)Spaces.board.get(p.getLocation())).getPrice();
 							System.out.println("This Cost will now be subtracted from your balance");
-							Monopoly.player1.subtractFromBalance(price);
-							System.out.println("Your balance is now: " + Monopoly.player1.getBalance());
-							
-							Monopoly.player1.ownedProperties.add(Monopoly.player1.getLocation());
-							
+							p.subtractFromBalance(price);
+							System.out.println("Your balance is now: " + p.getBalance());
+							//figure out owned properties method and like why this isn't adding
+							p.ownedProperties.add(p.getLocation());
+							p.setOwned(true);
+							System.out.println("Do You want to see your properties?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int playerDecision = userIntInput.nextInt();
+							if(playerDecision == 1)
+								{
+									Monopoly.printStats(p);
+								}
 						}
 		
 				
 		}
-		public static void payRent()
+		public static void payRent(Player p)
 		{
 			
 		}

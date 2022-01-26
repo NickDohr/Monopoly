@@ -10,10 +10,14 @@ public class Property extends BoardSpace
 		private int rentHotel;
 		private int mortgage;
 		private String color;
+		boolean owned = false;
 	
 		
 		
-		public Property(String n, int l, int p, int hp, int r, int r1, int r2, int r3, int r4, int rh, int m, String c)
+		
+
+
+		public Property(String n, int l, int p, int hp, int r, int r1, int r2, int r3, int r4, int rh, int m, String c, boolean o)
 		{
 			
 			setName(n);
@@ -28,10 +32,20 @@ public class Property extends BoardSpace
 			rentHotel = rh;
 			mortgage = m;
 			color = c;
+			owned = o;
 			
 			
 		}
-		
+		public boolean isOwned()
+			{
+				return owned;
+			}
+
+
+		public void setOwned(boolean owned)
+			{
+				this.owned = owned;
+			}
 
 		public int getRentOne()
 			{

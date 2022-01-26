@@ -12,7 +12,7 @@ chance.add(new Card("You won the lottery, collect $250"));
 	
 	
 }
-public static void landChance()
+public static void landChance(Player p)
 {
 int chanceNum = (int)(Math.random()*3);
 switch(chanceNum)
@@ -21,29 +21,36 @@ switch(chanceNum)
 	case 0:
 			{
 				System.out.println("Go to directly to jail, dont pass go");
-				Monopoly.player1.setLocation(10);
-				Monopoly.player1.setJailStatus(true);
+				p.setLocation(10);
+				p.setJailStatus(true);
 				break;
 			}
 		
 	case 1:
 			{
 				System.out.println("You have income tax!, pay up $100! ");
-				if(Monopoly.player1.getBalance()<100)
+				if(p.getBalance()<100)
 					{
 						System.out.println("Go to directly to jail, dont pass go");
-						Monopoly.player1.setLocation(10);
-						Monopoly.player1.setJailStatus(true);
+						p.setLocation(10);
+						p.setJailStatus(true);
 					}
 			
-				Monopoly.player1.subtractFromBalance(100);
+				p.subtractFromBalance(100);
 				break;
 			}
 	case 2:
 			{
+				if(Monopoly.scc = false)
+					{
 				System.out.println("Advance to Boardwalk!");
-				Monopoly.player1.setLocation(39);
-				Monopoly.checkLocation();
+					}
+				else
+					{
+						System.out.println("Advance to Aspen!");
+					}
+				p.setLocation(39);
+				Monopoly.checkLocation(p);
 				break;
 			}
 	
@@ -51,7 +58,7 @@ switch(chanceNum)
 }
 }
 
-public static void landCom()
+public static void landCom(Player p)
 {
 	int comNum = (int)(Math.random()*3);
 	switch(comNum)
@@ -71,13 +78,13 @@ public static void landCom()
 					 System.out.println("The dice rolled a " + dice);
 					if ( dice==one )
 						{
-							Monopoly.player1.addToBalance(3*(Monopoly.player1.getBalance()));
-							System.out.println("congratulations, you got lucky and your balance is now " + Monopoly.player1.getBalance());
+							p.addToBalance(3*(p.getBalance()));
+							System.out.println("congratulations, you got lucky and your balance is now " + p.getBalance());
 							break;
 						}
 						System.out.println("you took the L, you lost all your money, shouldnt have gambled on such bad odds ");
-						Monopoly.player1.subtractFromBalance(Monopoly.player1.getBalance());
-						System.out.println("Your balance is now " + Monopoly.player1.getBalance());
+						p.subtractFromBalance(p.getBalance());
+						System.out.println("Your balance is now " + p.getBalance());
 						break;
 
 					}

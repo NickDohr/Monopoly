@@ -6,6 +6,117 @@ public class Player
 		private int balance;
 		private int location = 1;
 		private boolean isInJail;
+		private boolean reversed;
+		private int houseCounter = 0;
+		private int brownCounter;
+		private int lightBlueCounter;
+		private int pinkCounter;
+		private int OrangeCounter;
+		private int redCounter;
+		private int yellowCounter;
+		private int greenCounter;
+		private int darkBlueCounter;
+		
+		
+		
+		
+		public int getBrownCounter()
+			{
+				return brownCounter;
+			}
+
+		public void setBrownCounter(int brownCounter)
+			{
+				this.brownCounter = brownCounter;
+			}
+
+		
+
+		public int getLightBlueCounter()
+			{
+				return lightBlueCounter;
+			}
+
+		public void setLightBlueCounter(int lightBlueCounter)
+			{
+				this.lightBlueCounter = lightBlueCounter;
+			}
+
+		public int getPinkCounter()
+			{
+				return pinkCounter;
+			}
+
+		public void setPinkCounter(int pinkCounter)
+			{
+				this.pinkCounter = pinkCounter;
+			}
+
+		public int getOrangeCounter()
+			{
+				return OrangeCounter;
+			}
+
+		public void setOrangeCounter(int orangeCounter)
+			{
+				OrangeCounter = orangeCounter;
+			}
+
+		public int getRedCounter()
+			{
+				return redCounter;
+			}
+
+		public void setRedCounter(int redCounter)
+			{
+				this.redCounter = redCounter;
+			}
+
+		public int getYellowCounter()
+			{
+				return yellowCounter;
+			}
+
+		public void setYellowCounter(int yellowCounter)
+			{
+				this.yellowCounter = yellowCounter;
+			}
+
+		public int getGreenCounter()
+			{
+				return greenCounter;
+			}
+
+		public void setGreenCounter(int greenCounter)
+			{
+				this.greenCounter = greenCounter;
+			}
+
+		public int getDarkBlueCounter()
+			{
+				return darkBlueCounter;
+			}
+
+		public void setDarkBlueCounter(int darkBlueCounter)
+			{
+				this.darkBlueCounter = darkBlueCounter;
+			}
+
+		public int getHouseCounter()
+			{
+				return houseCounter;
+			}
+
+		public void setHouseCounter(int houseCounter)
+			{
+				this.houseCounter = houseCounter;
+			}
+
+		public void setBalance(int balance)
+			{
+				this.balance = balance;
+			}
+
 		private String name;
 		 ArrayList<Integer> ownedProperties = new ArrayList<Integer>();
 		private boolean jailStatus;
@@ -44,6 +155,16 @@ public class Player
 		public void setInJail(boolean isInJail)
 			{
 				this.isInJail = isInJail;
+			}
+		
+		public boolean isReversed()
+			{
+				return reversed;
+			}
+
+		public void setReversed(boolean reversed)
+			{
+				this.reversed = reversed;
 			}
 
 		public void addToBalance(int b)

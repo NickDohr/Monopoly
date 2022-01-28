@@ -6,7 +6,7 @@ public class Monopoly
 		static boolean stillplaying = true;
 		static Player player1 = new Player();
 		static Player player2 = new Player();
-		static boolean reverse = false;
+		
 		static boolean scc = false;
 		static Scanner stringGetter = new Scanner(System.in);
 		private static String choice;
@@ -50,7 +50,23 @@ public class Monopoly
 				
 
 			}
-		
+		public static void playerDemo(Player p)
+		{
+			System.out.println("The Reverse Board will now be activated!");
+			boolean loop = true;
+			while(loop)
+				{
+					p.incrementLocation(1);
+					if(p.getLocation() == 20)
+						{
+							loop = false;
+							System.out.println("You have reached Free Parking!");
+						}
+				}
+			p.setReversed(true);
+			checkLocation(p);
+			
+		}
 		public static void playerTurn(Player p)
 		{
 			if(p.isJailStatus())
@@ -137,11 +153,16 @@ public class Monopoly
 
 					int b = rollDice();
 					System.out.println("You rolled a total of " + b + "!");
-					if(reverse == true)
+					if(p.isReversed() == true)
 						{
+							System.out.println("Increment reverse location");
 							p.reverseIncrementLocation(b);
+							System.out.println(p.getLocation());
 						}
+					else
+						{
 					p.incrementLocation(b);
+						}
 		}
 		
 		
@@ -437,7 +458,7 @@ public class Monopoly
 							p.addToBalance(500);
 							System.out.println("Free Parking!!!!! You gained $500!\nYour balance is now " +p.getBalance()+"!");
 							System.out.println("Your order on the board is now being reversed, you are going backwards!");
-							reverse = true;
+							
 							break;
 						}
 				case 21:

@@ -80,41 +80,49 @@ public class BoardSpace
 										{
 											int brownCounter = p.getBrownCounter();
 											p.setBrownCounter(brownCounter++);
+											break;
 										}
 								case "Light Blue":
 										{
 											int lightBlueCounter = p.getBrownCounter();
 											p.setLightBlueCounter(lightBlueCounter++);
+											break;
 										}
 								case "Pink":
 										{
 											int pinkCounter = p.getBrownCounter();
 											p.setPinkCounter(pinkCounter++);
+											break;
 										}
 								case "Orange":
 										{
 											int orangeCounter = p.getBrownCounter();
 											p.setOrangeCounter(orangeCounter++);
+											break;
 										}
 								case "Red":
 										{
 											int redCounter = p.getBrownCounter();
 											p.setRedCounter(redCounter++);
+											break;
 										}
 								case "Yellow":
 										{
 											int yellowCounter = p.getBrownCounter();
 											p.setYellowCounter(yellowCounter++);
+											break;
 										}
 								case "Green":
 										{
 											int greenCounter = p.getBrownCounter();
 											p.setGreenCounter(greenCounter++);
+											break;
 										}
 								case "Dark Blue":
 										{
 											int darkBlueCounter = p.getBrownCounter();
 											p.setDarkBlueCounter(darkBlueCounter++);
+											break;
 										}
 							}
 							System.out.println("Do You want to see your properties?");
@@ -152,10 +160,68 @@ public class BoardSpace
 			 if(playerOwned == false)
 				 {
 					 System.out.println("\nYou landed on someone's property, you must now pay the rent to them");
-					 System.out.println("You lost $" + ((Property)Spaces.board.get(p.getLocation())).getRentOne() + "!!");
-					 int price = ((Property)Spaces.board.get(p.getLocation())).getRentOne();
-					 p.subtractFromBalance(price);
-					 System.out.println("Your balance is now: $" + p.getBalance());
+					 if(((Property)Spaces.board.get(p.getLocation())).getNumOfHotels()  == 1)
+					 {
+						 System.out.println("Unfortunately for you, this person has a hotel on this property!");
+						 System.out.println("You lost $" + ((Property)Spaces.board.get(p.getLocation())).getRent() + "!!");
+						 int price = ((Property)Spaces.board.get(p.getLocation())).getRent();
+						 p.subtractFromBalance(price);
+						 System.out.println("Your balance is now: $" + p.getBalance());
+						 
+					 }
+					 switch(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses())
+					 {
+					 case 0:
+					 {
+						 System.out.println("Currently, this person has no houses on this property, so you will be paying the default rent");
+						 System.out.println("You lost $" + ((Property)Spaces.board.get(p.getLocation())).getRent() + "!!");
+						 int price = ((Property)Spaces.board.get(p.getLocation())).getRent();
+						 p.subtractFromBalance(price);
+						 System.out.println("Your balance is now: $" + p.getBalance());
+						 break;
+					 }
+					 case 1:
+					 {
+						 System.out.println("Currently, this person has one house on this property, so you will be paying that cost");
+						 System.out.println("You lost $" + ((Property)Spaces.board.get(p.getLocation())).getRentOne() + "!!");
+						 int price = ((Property)Spaces.board.get(p.getLocation())).getRentOne();
+						 p.subtractFromBalance(price);
+						 System.out.println("Your balance is now: $" + p.getBalance());
+						 break;
+					 }
+					 case 2:
+					 {
+						 System.out.println("Currently, this person has two houses on this property, so you will be paying that cost");
+						 System.out.println("You lost $" + ((Property)Spaces.board.get(p.getLocation())).getRentTwo() + "!!");
+						 int price = ((Property)Spaces.board.get(p.getLocation())).getRentTwo();
+						 p.subtractFromBalance(price);
+						 System.out.println("Your balance is now: $" + p.getBalance());
+						 break;
+					 }
+					 
+					 case 3:
+					 {
+						 System.out.println("Currently, this person has three houses on this property, so you will be paying that cost");
+						 System.out.println("You lost $" + ((Property)Spaces.board.get(p.getLocation())).getRentThree() + "!!");
+						 int price = ((Property)Spaces.board.get(p.getLocation())).getRentThree();
+						 p.subtractFromBalance(price);
+						 System.out.println("Your balance is now: $" + p.getBalance());
+						 break;
+					 }
+					 
+					 case 4:
+					 {
+						 System.out.println("Currently, this person has four houses on this property, so you will be paying that cost");
+						 System.out.println("You lost $" + ((Property)Spaces.board.get(p.getLocation())).getRentFour() + "!!");
+						 int price = ((Property)Spaces.board.get(p.getLocation())).getRentFour();
+						 p.subtractFromBalance(price);
+						 System.out.println("Your balance is now: $" + p.getBalance());
+						 break;
+					 }
+					 
+					 }
+				
+					
 				 }
 			 else
 				 {

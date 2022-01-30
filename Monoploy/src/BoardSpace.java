@@ -153,16 +153,20 @@ public class BoardSpace
 				 {
 					 System.out.println("\nYou landed on someone's property, you must now pay the rent to them");
 					 System.out.println("You lost $" + ((Property)Spaces.board.get(p.getLocation())).getRentOne() + "!!");
-					 int price = ((Property)Spaces.board.get(p.getLocation())).getRent();
+					 int price = ((Property)Spaces.board.get(p.getLocation())).getRentOne();
 					 p.subtractFromBalance(price);
 					 System.out.println("Your balance is now: $" + p.getBalance());
 				 }
 			 else
 				 {
 					 System.out.println("You have landed on your own property");
-					  if(p.getBrownCounter() == 2)
+					 if(((Property)Spaces.board.get(p.getLocation())).getNumOfHotels() == 1)
+					 {
+						 System.out.println("Enjoy your hotel!");
+					 }
+					 else if(p.getBrownCounter() == 2)
 							  {
-								  if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()!= 4)
+								  if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()!= 4 && ((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() > 1)
 									  {
 										   System.out.println("Do you want to add more houses?");
 											System.out.println("1 - Yes");
@@ -170,42 +174,377 @@ public class BoardSpace
 											int playerDecision3 = userIntInput.nextInt();
 											if(playerDecision3 == 1)
 												{
-													System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house");
+													System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+													System.out.println("This cost will now be subtracted from your balance");
+													p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+													((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
 												}
 									  }
+								  else if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()== 4)
+								  {
+									  System.out.println("You have 4 houses on this property, so now you have the option to add a hotel to this property");
+									  System.out.println("Do you want to add a hotel?");
+										System.out.println("1 - Yes");
+										System.out.println("2 - No");
+										int playerDecision3 = userIntInput.nextInt();
+										if(playerDecision3 == 1)
+											{
+												System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+												System.out.println("This cost will now be subtracted from your balance");
+												p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+												((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHotels() + 1);
+											}
+								  }
+								  else
+								  {
+									  System.out.println("You have the opportunity to add houses since you own every property of the brown color!");
+									  System.out.println("Do you want to add more houses?");
+										System.out.println("1 - Yes");
+										System.out.println("2 - No");
+										int intitialHouseDecision = userIntInput.nextInt();
+										if(intitialHouseDecision == 1)
+											{
+												System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+												System.out.println("This cost will now be subtracted from your balance");
+												p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+												((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+											}
+								  }
 								 
 							  }
 					  else if(p.getLightBlueCounter() == 3)
 						  {
-							  
+						  if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()!= 4 && ((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() > 1)
+						  {
+							   System.out.println("Do you want to add more houses?");
+								System.out.println("1 - Yes");
+								System.out.println("2 - No");
+								int playerDecision3 = userIntInput.nextInt();
+								if(playerDecision3 == 1)
+									{
+										System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+										System.out.println("This cost will now be subtracted from your balance");
+										p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+										((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+									}
+						  }
+					  else if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()== 4)
+					  {
+						  System.out.println("You have 4 houses on this property, so now you have the option to add a hotel to this property");
+						  System.out.println("Do you want to add a hotel?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int playerDecision3 = userIntInput.nextInt();
+							if(playerDecision3 == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHotels() + 1);
+								}
+					  }
+					  else
+					  {
+						  System.out.println("You have the opportunity to add houses since you own every property of the light blue color!");
+						  System.out.println("Do you want to add more houses?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int intitialHouseDecision = userIntInput.nextInt();
+							if(intitialHouseDecision == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+								}
+					  }
 						  }
 					  else if(p.getPinkCounter() == 3)
 						  {
-							  
+						  if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()!= 4 && ((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() > 1)
+						  {
+							   System.out.println("Do you want to add more houses?");
+								System.out.println("1 - Yes");
+								System.out.println("2 - No");
+								int playerDecision3 = userIntInput.nextInt();
+								if(playerDecision3 == 1)
+									{
+										System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+										System.out.println("This cost will now be subtracted from your balance");
+										p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+										((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+									}
+						  }
+					  else if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()== 4)
+					  {
+						  System.out.println("You have 4 houses on this property, so now you have the option to add a hotel to this property");
+						  System.out.println("Do you want to add a hotel?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int playerDecision3 = userIntInput.nextInt();
+							if(playerDecision3 == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHotels() + 1);
+								}
+					  }
+					  else
+					  {
+						  System.out.println("You have the opportunity to add houses since you own every property of the pink color!");
+						  System.out.println("Do you want to add more houses?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int intitialHouseDecision = userIntInput.nextInt();
+							if(intitialHouseDecision == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+								}
+					  }
 						  }
 					  else if(p.getOrangeCounter() == 3)
 						  {
-							  
+						  if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()!= 4 && ((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() > 1)
+						  {
+							   System.out.println("Do you want to add more houses?");
+								System.out.println("1 - Yes");
+								System.out.println("2 - No");
+								int playerDecision3 = userIntInput.nextInt();
+								if(playerDecision3 == 1)
+									{
+										System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+										System.out.println("This cost will now be subtracted from your balance");
+										p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+										((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+									}
+						  }
+					  else if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()== 4)
+					  {
+						  System.out.println("You have 4 houses on this property, so now you have the option to add a hotel to this property");
+						  System.out.println("Do you want to add a hotel?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int playerDecision3 = userIntInput.nextInt();
+							if(playerDecision3 == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHotels() + 1);
+								}
+					  }
+					  else
+					  {
+						  System.out.println("You have the opportunity to add houses since you own every property of the orange color!");
+						  System.out.println("Do you want to add more houses?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int intitialHouseDecision = userIntInput.nextInt();
+							if(intitialHouseDecision == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+								}
+					  }
 						  }
 					  else if(p.getRedCounter() == 3)
 						  {
-							  
+						  if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()!= 4 && ((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() > 1)
+						  {
+							   System.out.println("Do you want to add more houses?");
+								System.out.println("1 - Yes");
+								System.out.println("2 - No");
+								int playerDecision3 = userIntInput.nextInt();
+								if(playerDecision3 == 1)
+									{
+										System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+										System.out.println("This cost will now be subtracted from your balance");
+										p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+										((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+									}
+						  }
+					  else if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()== 4)
+					  {
+						  System.out.println("You have 4 houses on this property, so now you have the option to add a hotel to this property");
+						  System.out.println("Do you want to add a hotel?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int playerDecision3 = userIntInput.nextInt();
+							if(playerDecision3 == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHotels() + 1);
+								}
+					  }
+					  else
+					  {
+						  System.out.println("You have the opportunity to add houses since you own every property of the red color!");
+						  System.out.println("Do you want to add more houses?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int intitialHouseDecision = userIntInput.nextInt();
+							if(intitialHouseDecision == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+								}
+					  }
 						  }
 					  else if(p.getYellowCounter() == 3)
 						  {
-							  
+						  if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()!= 4 && ((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() > 1)
+						  {
+							   System.out.println("Do you want to add more houses?");
+								System.out.println("1 - Yes");
+								System.out.println("2 - No");
+								int playerDecision3 = userIntInput.nextInt();
+								if(playerDecision3 == 1)
+									{
+										System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+										System.out.println("This cost will now be subtracted from your balance");
+										p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+										((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+									}
+						  }
+					  else if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()== 4)
+					  {
+						  System.out.println("You have 4 houses on this property, so now you have the option to add a hotel to this property");
+						  System.out.println("Do you want to add a hotel?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int playerDecision3 = userIntInput.nextInt();
+							if(playerDecision3 == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHotels() + 1);
+								}
+					  }
+					  else
+					  {
+						  System.out.println("You have the opportunity to add houses since you own every property of the yellow color!");
+						  System.out.println("Do you want to add more houses?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int intitialHouseDecision = userIntInput.nextInt();
+							if(intitialHouseDecision == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+								}
+					  }
 						  }
 					  else if(p.getGreenCounter() == 3)
 						  {
-							  
+						  if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()!= 4 && ((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() > 1)
+						  {
+							   System.out.println("Do you want to add more houses?");
+								System.out.println("1 - Yes");
+								System.out.println("2 - No");
+								int playerDecision3 = userIntInput.nextInt();
+								if(playerDecision3 == 1)
+									{
+										System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+										System.out.println("This cost will now be subtracted from your balance");
+										p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+										((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+									}
+						  }
+					  else if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()== 4)
+					  {
+						  System.out.println("You have 4 houses on this property, so now you have the option to add a hotel to this property");
+						  System.out.println("Do you want to add a hotel?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int playerDecision3 = userIntInput.nextInt();
+							if(playerDecision3 == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHotels() + 1);
+								}
+					  }
+					  else
+					  {
+						  System.out.println("You have the opportunity to add houses since you own every property of the green color!");
+						  System.out.println("Do you want to add more houses?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int intitialHouseDecision = userIntInput.nextInt();
+							if(intitialHouseDecision == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+								}
+					  }
 						  }
 					  else if(p.getDarkBlueCounter() == 2)
 						  {
-							  
+						  if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()!= 4 && ((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() > 1)
+						  {
+							   System.out.println("Do you want to add more houses?");
+								System.out.println("1 - Yes");
+								System.out.println("2 - No");
+								int playerDecision3 = userIntInput.nextInt();
+								if(playerDecision3 == 1)
+									{
+										System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+										System.out.println("This cost will now be subtracted from your balance");
+										p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+										((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+									}
+						  }
+					  else if(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses()== 4)
+					  {
+						  System.out.println("You have 4 houses on this property, so now you have the option to add a hotel to this property");
+						  System.out.println("Do you want to add a hotel?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int playerDecision3 = userIntInput.nextInt();
+							if(playerDecision3 == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHotels() + 1);
+								}
+					  }
+					  else
+					  {
+						  System.out.println("You have the opportunity to add houses since you own every property of the dark blue color!");
+						  System.out.println("Do you want to add more houses?");
+							System.out.println("1 - Yes");
+							System.out.println("2 - No");
+							int intitialHouseDecision = userIntInput.nextInt();
+							if(intitialHouseDecision == 1)
+								{
+									System.out.println("$" + ((Property)Spaces.board.get(p.getLocation())).getHouseprice() + " is the cost of a house.");
+									System.out.println("This cost will now be subtracted from your balance");
+									p.subtractFromBalance(((Property)Spaces.board.get(p.getLocation())).getHouseprice());
+									((Property)Spaces.board.get(p.getLocation())).setNumOfHouses(((Property)Spaces.board.get(p.getLocation())).getNumOfHouses() + 1);
+								}
+					  }
 						  }
 					  
-				 }
+			 }	 
 			
 		}	
 
 	}
+	

@@ -12,6 +12,7 @@ public class Property extends BoardSpace
 		private String color;
 		boolean owned = false;
 		int numOfHouses;
+		int numOfHotels;
 	
 		
 		
@@ -19,7 +20,7 @@ public class Property extends BoardSpace
 
 
 	
-		public Property(String n, int l, int p, int hp, int r, int r1, int r2, int r3, int r4, int rh, int m, String c, boolean o, int h)
+		public Property(String n, int l, int p, int hp, int r, int r1, int r2, int r3, int r4, int rh, int m, String c, boolean o, int h, int noh)
 		{
 			
 			setName(n);
@@ -36,9 +37,18 @@ public class Property extends BoardSpace
 			color = c;
 			owned = o;
 			numOfHouses = h;
+			numOfHotels = noh;
 			
 		}
 		
+		public int getNumOfHotels() {
+			return numOfHotels;
+		}
+
+		public void setNumOfHotels(int numOfHotels) {
+			this.numOfHotels = numOfHotels;
+		}
+
 		public int getNumOfHouses()
 			{
 				return numOfHouses;

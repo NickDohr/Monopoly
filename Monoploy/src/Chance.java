@@ -31,7 +31,7 @@ switch(chanceNum)
 				System.out.println("You have income tax!, pay up $100! ");
 				if(p.getBalance()<100)
 					{
-						System.out.println("Go to directly to jail, dont pass go");
+						System.out.println("Go to directly to jail, don't pass go");
 						p.setLocation(10);
 						p.setJailStatus(true);
 					}
@@ -41,11 +41,11 @@ switch(chanceNum)
 			}
 	case 2:
 			{
-				if(Monopoly.scc = false)
+				if(p.scc = false)
 					{
 				System.out.println("Advance to Boardwalk!");
 					}
-				else
+				else if(p.scc = true)
 					{
 						System.out.println("Advance to Aspen!");
 					}

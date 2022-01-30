@@ -4,7 +4,7 @@ import java.util.Collections;
 public class Player
 	{
 		private int balance;
-		private int location = 1;
+		private int location = 0;
 		private boolean isInJail;
 		private boolean reversed;
 		private int houseCounter = 0;
@@ -16,10 +16,37 @@ public class Player
 		private int yellowCounter;
 		private int greenCounter;
 		private int darkBlueCounter;
+		private int numOfUtilities;
+		private int numOwned;
+		boolean scc = false;
 		
 		
 		
 		
+		public boolean isScc() {
+			return scc;
+		}
+
+		public void setScc(boolean scc) {
+			this.scc = scc;
+		}
+
+		public int getNumOfUtilities() {
+			return numOfUtilities;
+		}
+
+		public void setNumOfUtilities(int numOfUtilities) {
+			this.numOfUtilities = numOfUtilities;
+		}
+
+		public int getNumOwned() {
+			return numOwned;
+		}
+
+		public void setNumOwned(int numOwned) {
+			this.numOwned = numOwned;
+		}
+
 		public int getBrownCounter()
 			{
 				return brownCounter;

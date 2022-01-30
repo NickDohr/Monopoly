@@ -17,11 +17,12 @@ public class Utility extends BoardSpace
 
 		public int getRent(int diceRoll)
 			{
-				if(owned) {
+				if(numOfUtilities == 2) {
 					return 10*diceRoll;
-				}else {
-					System.out.println();
-					return 0;
+				}
+				else {
+					return 4*diceRoll;
+					
 				}
 				
 			}

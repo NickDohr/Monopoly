@@ -7,7 +7,7 @@ public class Monopoly
 		static Player player1 = new Player();
 		static Player player2 = new Player();
 		
-		static boolean scc = false;
+		
 		static Scanner stringGetter = new Scanner(System.in);
 		private static String choice;
 
@@ -25,12 +25,14 @@ public class Monopoly
 				if(choice == 1)
 					{
 						Spaces.fillboard();
-						scc = false;
+						player1.setScc(false);
+						player2.setScc(false);
 					}
 				else if(choice == 2)
 					{
 						Spaces.fillSkiBoard();
-						scc = true;
+						player1.setScc(true);
+						player2.setScc(true);
 					}
 				else
 					{
@@ -168,6 +170,7 @@ public class Monopoly
 		
 		public static void checkLocation(Player p)
 		{	
+			Scanner userIntInput = new Scanner(System.in);
 			//checks for properties	
 			switch(p.getLocation())
 			{
@@ -246,7 +249,62 @@ public class Monopoly
 								
 							else
 							{
-								Spaces.board.get(5).payRent(p);
+								boolean playerOwned = false;
+								for(int i: p.ownedProperties)
+									{
+										if(Spaces.board.get(i) == Spaces.board.get(p.getLocation()))
+											{
+												playerOwned = true;
+											}
+										
+									}
+								if(playerOwned == false)
+								{
+									if(p == player1)
+									{
+										if(player2.getNumOwned() == 1)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getOneRoadRent());
+										}
+										else if(player2.getNumOwned() == 2)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getTwoRoadRent());
+										}
+										else if(player2.getNumOwned() == 3)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getThreeRoadRent());
+										}
+										else if(player2.getNumOwned() == 4)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getFourRoadRent());
+										}
+										
+									}
+									else if(p == player1 )
+									{
+										if(player1.getNumOwned() == 1)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getOneRoadRent());
+										}
+										else if(player1.getNumOwned() == 2)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getTwoRoadRent());
+										}
+										else if(player1.getNumOwned() == 3)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getThreeRoadRent());
+										}
+										else if(player1.getNumOwned() == 4)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getFourRoadRent());
+										}
+									}
+											
+								}
+								else
+								{
+									System.out.println("You have landed on your own railroad!");
+								}
 							}
 							break;
 						}
@@ -335,7 +393,14 @@ public class Monopoly
 											System.out.println("This Cost will now be subtracted from your balance");
 											p.subtractFromBalance(price);
 											System.out.println("Your balance is now: " + p.getBalance());
-											
+											if(p == player1)
+											{
+												player1.setNumOfUtilities(player1.getNumOfUtilities() + 1);
+											}
+											else if(p == player2)
+											{
+												player2.setNumOfUtilities(player2.getNumOfUtilities() + 1);
+											}
 											p.ownedProperties.add(p.getLocation());
 											
 										}
@@ -343,7 +408,9 @@ public class Monopoly
 								
 							else
 							{
-								Spaces.board.get(12).payRent(p);
+								int b = rollDice();
+								int c = ((Utility)Spaces.board.get(p.getLocation())).getRent(b);
+								p.subtractFromBalance(c);
 							}
 							break;
 						}
@@ -394,13 +461,76 @@ public class Monopoly
 											System.out.println("Your balance is now: " + p.getBalance());
 											
 											p.ownedProperties.add(p.getLocation());
+											System.out.println("Do You want to see your properties?");
+											System.out.println("1 - Yes");
+											System.out.println("2 - No");
+											int playerDecision = userIntInput.nextInt();
+											if(playerDecision == 1)
+												{
+													Monopoly.printStats(p);
+												}
 											
 										}
 								}
 								
 							else
 							{
-								Spaces.board.get(15).payRent(p);
+								boolean playerOwned = false;
+								for(int i: p.ownedProperties)
+									{
+										if(Spaces.board.get(i) == Spaces.board.get(p.getLocation()))
+											{
+												playerOwned = true;
+											}
+										
+									}
+								if(playerOwned == false)
+								{
+									if(p == player1)
+									{
+										if(player2.getNumOwned() == 1)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getOneRoadRent());
+										}
+										else if(player2.getNumOwned() == 2)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getTwoRoadRent());
+										}
+										else if(player2.getNumOwned() == 3)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getThreeRoadRent());
+										}
+										else if(player2.getNumOwned() == 4)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getFourRoadRent());
+										}
+										
+									}
+									else if(p == player1 )
+									{
+										if(player1.getNumOwned() == 1)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getOneRoadRent());
+										}
+										else if(player1.getNumOwned() == 2)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getTwoRoadRent());
+										}
+										else if(player1.getNumOwned() == 3)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getThreeRoadRent());
+										}
+										else if(player1.getNumOwned() == 4)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getFourRoadRent());
+										}
+									}
+											
+								}
+								else
+								{
+									System.out.println("You have landed on your own railroad!");
+								}
 							}
 							break;
 						}
@@ -535,7 +665,62 @@ public class Monopoly
 								
 							else
 							{
-								Spaces.board.get(25).payRent(p);
+								boolean playerOwned = false;
+								for(int i: p.ownedProperties)
+									{
+										if(Spaces.board.get(i) == Spaces.board.get(p.getLocation()))
+											{
+												playerOwned = true;
+											}
+										
+									}
+								if(playerOwned == false)
+								{
+									if(p == player1)
+									{
+										if(player2.getNumOwned() == 1)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getOneRoadRent());
+										}
+										else if(player2.getNumOwned() == 2)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getTwoRoadRent());
+										}
+										else if(player2.getNumOwned() == 3)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getThreeRoadRent());
+										}
+										else if(player2.getNumOwned() == 4)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getFourRoadRent());
+										}
+										
+									}
+									else if(p == player1 )
+									{
+										if(player1.getNumOwned() == 1)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getOneRoadRent());
+										}
+										else if(player1.getNumOwned() == 2)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getTwoRoadRent());
+										}
+										else if(player1.getNumOwned() == 3)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getThreeRoadRent());
+										}
+										else if(player1.getNumOwned() == 4)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getFourRoadRent());
+										}
+									}
+											
+								}
+								else
+								{
+									System.out.println("You have landed on your own railroad!");
+								}
 							}
 							break;
 						}
@@ -584,7 +769,14 @@ public class Monopoly
 											System.out.println("This Cost will now be subtracted from your balance");
 											p.subtractFromBalance(price);
 											System.out.println("Your balance is now: " + p.getBalance());
-											
+											if(p == player1)
+											{
+												player1.setNumOfUtilities(player1.getNumOfUtilities() + 1);
+											}
+											else if(p == player2)
+											{
+												player2.setNumOfUtilities(player2.getNumOfUtilities() + 1);
+											}
 											p.ownedProperties.add(p.getLocation());
 											
 										}
@@ -592,7 +784,9 @@ public class Monopoly
 								
 							else
 							{
-								Spaces.board.get(28).payRent(p);
+								int b = rollDice();
+								int c = ((Utility)Spaces.board.get(p.getLocation())).getRent(b);
+								p.subtractFromBalance(c);
 							}
 							break;
 						}
@@ -613,6 +807,7 @@ public class Monopoly
 				case 30:
 						{
 							System.out.println("You have done something illegal and now must go to Jail....");
+							p.setLocation(10);
 							p.setJailStatus(true);
 							break;
 						}
@@ -689,7 +884,62 @@ public class Monopoly
 								
 							else
 							{
-								Spaces.board.get(35).payRent(p);
+								boolean playerOwned = false;
+								for(int i: p.ownedProperties)
+									{
+										if(Spaces.board.get(i) == Spaces.board.get(p.getLocation()))
+											{
+												playerOwned = true;
+											}
+										
+									}
+								if(playerOwned == false)
+								{
+									if(p == player1)
+									{
+										if(player2.getNumOwned() == 1)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getOneRoadRent());
+										}
+										else if(player2.getNumOwned() == 2)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getTwoRoadRent());
+										}
+										else if(player2.getNumOwned() == 3)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getThreeRoadRent());
+										}
+										else if(player2.getNumOwned() == 4)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getFourRoadRent());
+										}
+										
+									}
+									else if(p == player1 )
+									{
+										if(player1.getNumOwned() == 1)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getOneRoadRent());
+										}
+										else if(player1.getNumOwned() == 2)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getTwoRoadRent());
+										}
+										else if(player1.getNumOwned() == 3)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getThreeRoadRent());
+										}
+										else if(player1.getNumOwned() == 4)
+										{
+											p.subtractFromBalance(((Railroad)Spaces.board.get(p.getLocation())).getFourRoadRent());
+										}
+									}
+											
+								}
+								else
+								{
+									System.out.println("You have landed on your own railroad!");
+								}
 							}
 							break;
 						}

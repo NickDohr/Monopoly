@@ -9,6 +9,7 @@ public class Railroad extends BoardSpace
 		private int numOfRoads;
 		boolean owned = false;
 		
+		
 		public Railroad(String n, int l, int r1,int r2, int r3, int r4, int m, int p, boolean o)
 		{
 			setName(n);
@@ -21,7 +22,10 @@ public class Railroad extends BoardSpace
 			price = p;
 			owned = o;
 			
+			
 		}
+
+		
 
 		public int getOneRoadRent()
 			{
